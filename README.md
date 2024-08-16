@@ -1,8 +1,8 @@
 # 🚀 Coinbase Job Applicator
 
 Welcome to the "I Really, Really Want to Work at Coinbase" script!  
-So, you've noticed that Coinbase is packed with job opportunities that scream your name, and you want to apply to all of them in record time? Say no more.<br><br>
-Introducing this little Python thing that will turbocharge your job application process at Coinbase, because manually filling out forms is so 2010.
+So, you've noticed that Coinbase is packed with job opportunities that scream your name, and you want to apply to all of them in record time? I can help 😊<br><br>
+Introducing this little Python script that will turbocharge your job application process, because manually filling out forms is so 2010.
 
 ## 🤖 What This Script Does
 
@@ -10,8 +10,8 @@ This script is your personal job application assistant.
 It's like having a very enthusiastic friend who really wants you to work at Coinbase, but doesn't get tired or make typos. Here's what it does:
 
 1. Fills out job applications faster than you can say "blockchain"
-2. Uploads your resume and cover letter (because who doesn't love a good cover letter?)
-3. Answers all those pesky questions about your experience with Coinbase products
+2. Uploads your resume and cover letter (because who doesn't love a good cover letter to confirm you really want this job?)
+3. Answers all those pesky questions about your experience with Coinbase products and other things
 4. Handles both single URL applications and bulk applications from a list
 5. Gives you a chance to review before submitting, in case you want to add a joke or two
 
@@ -19,9 +19,9 @@ It's like having a very enthusiastic friend who really wants you to work at Coin
 
 Before you embark on this automated job-seeking adventure, make sure you have:
 
-- Python (preferably a version that's not old enough to apply for jobs itself)
-- Selenium (because we're not savages who manually click buttons)
-- ChromeDriver (make sure it's the right version, or things get weird)
+- Python (preferably a version that's not too old)
+- The things included in the requirements.txt file (see below)
+- ChromeDriver (https://sites.google.com/a/chromium.org/chromedriver/downloads)
 - A burning desire to work at Coinbase (optional, but recommended)
 
 ## 🎭 Features
