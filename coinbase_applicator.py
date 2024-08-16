@@ -7,23 +7,26 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 import os
 
-# Constant Area
-FIRST_NAME = 'Fabrice'
-LAST_NAME = 'Colozzi'
-EMAIL = 'fabricecolozzi@gmail.com'
-PHONE = '7862851360'
-LINKEDIN_PROFILE = 'https://www.linkedin.com/in/fabrice-colozzi/'
-RESUME_PATH = os.path.abspath('/Users/c/Desktop/Fabrice-C_2024.pdf')
-COVER_LETTER_PATH = os.path.abspath('/Users/c/Desktop/Cover-Letter_CoinBase.pdf')
-COINBASE_PRODUCT_EXPERIENCE = "Yes, I'm familiar with your products, including the APIs"
+# -----------------------------------------------------------------------------------------
+# Read the README.md file for instructions on how to use this script
+# -----------------------------------------------------------------------------------------
+# Fill in the following details before running the script
+FIRST_NAME = 'your_first_name'
+LAST_NAME = 'your_last_name'
+EMAIL = 'your@email.com'
+PHONE = 'your_phone_number'
+LINKEDIN_PROFILE = 'https://www.linkedin.com/in/blahblahblah/'
+RESUME_PATH = os.path.abspath('/Users/....etc') # for PC, change the /Users/ to C:/Users/...
+COVER_LETTER_PATH = os.path.abspath('/Users/....etc') 
+COINBASE_PRODUCT_EXPERIENCE = "Yes, + some blah blah..."
 GENDER = 'Male'
-ETHNIC_BACKGROUND = 'White'
-JOB_HEARD_FROM = 'Career Page'
+ETHNIC_BACKGROUND = 'whichever-you-identify-to'
+JOB_HEARD_FROM = 'Career Page' # or 'LinkedIn' or ....
+# -----------------------------------------------------------------------------------------
+URL_LIST_FILE = 'url_list.txt' # make sure the file is in the same directory as the script
+# -----------------------------------------------------------------------------------------
 
-# Hard-coded file name for URL list
-URL_LIST_FILE = 'url_list.txt'
 
-# Function to set up and return the driver
 def setup_driver():
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
     return driver
