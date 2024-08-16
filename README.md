@@ -1,6 +1,6 @@
 # 🚀 Coinbase Job Applicator
 
-Welcome to the "I Really, Really Want to Work at Coinbase" script!
+Welcome to the "I Really, Really Want to Work at Coinbase" script!  
 So, you've noticed that Coinbase is packed with job opportunities that scream your name, and you want to apply to all of them in record time? Say no more.
 Introducing this little Python thing that will turbocharge your job application process at Coinbase, because manually filling out forms is so 2010.
 
