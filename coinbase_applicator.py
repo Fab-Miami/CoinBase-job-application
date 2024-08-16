@@ -31,11 +31,10 @@ def setup_driver():
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
     return driver
 
-# Function to fill out text fields and check
+# Fill out text fields and check
 def fill_and_check(label_text, value, is_partial_match=False):
     global driver
     try:
-        # Modify the XPath to use starts-with if is_partial_match is True
         if is_partial_match:
             xpath = f"//label[starts-with(text(), '{label_text}')]/following-sibling::div//input"
         else:
@@ -47,24 +46,14 @@ def fill_and_check(label_text, value, is_partial_match=False):
     except Exception as e:
         print(f"Failed to fill and check the field with label '{label_text}': {e}")
 
-# Function to extract the Job ID from the URL
-def extract_job_id(url):
-    return url.rstrip('/').split('/')[-1]
-
-# Reading the URL list and filtering out commented lines
-def read_url_list(filename):
-    with open(filename, 'r') as file:
-        urls = [line.strip() for line in file if line.strip() and not line.strip().startswith('#')]
-    return urls
-
-# Function to process the form
+# Process the form
 def process_form(url):
     global driver
-    job_id = extract_job_id(url)
+    job_id = url.rstrip('/').split('/')[-1]
     driver.get(url)
     
     try:
-        # Wait for the first iframe to be available and switch to it
+        # Wait up to 15sec for the first iframe to be available and switch to it
         WebDriverWait(driver, 15).until(EC.presence_of_element_located((By.TAG_NAME, 'iframe')))
         iframe = driver.find_elements(By.TAG_NAME, 'iframe')[0]  # Select the first iframe
         driver.switch_to.frame(iframe)
@@ -83,7 +72,7 @@ def process_form(url):
         except Exception as e:
             print(f"Resume upload failed: {e}")
 
-        # Upload cover letter (optional)
+        # Upload cover letter
         try:
             cover_letter_element = driver.find_element(By.ID, 'cover_letter')
             cover_letter_element.send_keys(COVER_LETTER_PATH)
@@ -145,7 +134,7 @@ def process_form(url):
         except Exception as e:
             print(f"Product management experience radio button not found: {e}")
 
-        # Select "No" for "Have you previously been employed by Coinbase in any capacity?"
+        # Select "No" for "Have you previously been employed by Coinbase"
         try:
             employment_label = WebDriverWait(driver, 1).until(
                 EC.presence_of_element_located((By.XPATH, "//label[contains(text(), 'Have you previously been employed by Coinbase')]/following-sibling::div//input[@value='0']"))
@@ -154,7 +143,7 @@ def process_form(url):
         except Exception as e:
             print(f"Previous employment radio button not found: {e}")
 
-        # Select "LinkedIn" from the dropdown for "How did you hear about this job?"
+        # Select JOB_HEARD_FROM from the dropdown for "How did you hear about this job?"
         try:
             dropdown_label = WebDriverWait(driver, 1).until(
                 EC.presence_of_element_located((By.XPATH, "//label[contains(text(), 'How did you hear about this job')]"))
@@ -165,7 +154,7 @@ def process_form(url):
         except Exception as e:
             print(f"Dropdown for 'How did you hear about this job?' not found: {e}")
 
-        # Check the "Confirmed" checkbox for Global Data Privacy Notice using JavaScript
+        # Check the "Confirmed" checkbox for Global Data Privacy Notice
         try:
             privacy_label = WebDriverWait(driver, 1).until(
                 EC.presence_of_element_located((By.XPATH, "//label[contains(text(), 'Please confirm receipt of the above linked Global')]"))
@@ -175,7 +164,7 @@ def process_form(url):
         except Exception as e:
             print(f"Global Data Privacy Notice checkbox not found: {e}")
 
-        # Select "Male" for "What is your gender?"
+        # Select GENDER for "What is your gender?"
         try:
             gender_select = WebDriverWait(driver, 1).until(EC.presence_of_all_elements_located((By.XPATH, "//*[starts-with(@id, 'demographics_')]")))[0]  # first dropdown
             Select(gender_select).select_by_visible_text(GENDER)
@@ -183,9 +172,8 @@ def process_form(url):
             print(f"Gender selection dropdown not found: {e}")
 
 
-        # Select the option that starts with "White" for "How would you describe your racial/ethnic background?"
+        # Select the option that starts with ETHNIC_BACKGROUND for "How would you describe your racial/ethnic background?"
         ethnic_dropdown = WebDriverWait(driver, 1).until(EC.presence_of_all_elements_located((By.XPATH, "//*[starts-with(@id, 'demographics_')]")))[1]  # second dropdown
-
         for option in Select(ethnic_dropdown).options:
             if option.text.startswith(ETHNIC_BACKGROUND):
                 Select(ethnic_dropdown).select_by_visible_text(option.text)
@@ -197,7 +185,7 @@ def process_form(url):
     # Wait for user confirmation before submitting the form
     input("Form is filled out. Review the form, and press Enter to submit or close the browser window to cancel.")
 
-    # Click the submit button if it exists and make sure form is submitted
+    # This script is click the submit button and makes sure the form is submitted
     try:
         submit_button = WebDriverWait(driver, 1).until(
             EC.element_to_be_clickable(
@@ -206,20 +194,15 @@ def process_form(url):
         )
         driver.execute_script("arguments[0].click();", submit_button)
         print(f"Submit Button Clicked for Job ID {job_id}")
-
         WebDriverWait(driver, 15).until(EC.invisibility_of_element_located((By.ID, "submit_job")))
-
-        time.sleep(2)
-
-        print(f"Form submission confirmed for Job ID {job_id}. Proceeding to the next page...")
+        time.sleep(2) # 2sec to visaully confirm the submission (can be set lower)
+        print(f"\033[92mForm submission confirmed for Job ID {job_id}. Proceeding to the next page...\033[0m")
         mark_url_as_processed(url)
 
     except Exception as e:
         print(f"Submit button not found or could not be clicked for Job ID {job_id}: {e}")
 
-
-# Function to read the URL list and check for duplicate Job IDs
-# Function to read the URL list and check for duplicate Job IDs
+# Read the URL list and check for duplicate Job IDs
 def read_and_validate_urls(filename):
     job_ids = {}
     duplicates = []
@@ -262,12 +245,9 @@ def mark_url_as_processed(url):
 
 # ====================================================================================
 
-# Main function to execute the script
 def main():
     global driver
     driver = setup_driver()
-
-    # Ask the user for mode selection with a numerical choice
     print("Select mode:")
     print("1. One by one URL mode")
     print("2. URL list mode")

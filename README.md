@@ -1,12 +1,13 @@
 # 🚀 Coinbase Job Applicator
 
 Welcome to the "I Really, Really Want to Work at Coinbase" script!
-If like me you notice CoinBase has hundreds of job that matches your profile, and you want to apply to all of them, here is the solution i came up with.
-This small Python thing is designed to streamline your job application process at Coinbase, because manually filling out forms is so 2010.
+So, you've noticed that Coinbase is packed with job opportunities that scream your name, and you want to apply to all of them in record time? Say no more.
+Introducing this little Python thing that will turbocharge your job application process at Coinbase, because manually filling out forms is so 2010.
 
 ## 🤖 What This Script Does
 
-This script is your personal job application assistant. It's like having a very enthusiastic friend who really wants you to work at Coinbase, but doesn't get tired or make typos. Here's what it does:
+This script is your personal job application assistant.
+It's like having a very enthusiastic friend who really wants you to work at Coinbase, but doesn't get tired or make typos. Here's what it does:
 
 1. Fills out job applications faster than you can say "blockchain"
 2. Uploads your resume and cover letter (because who doesn't love a good cover letter?)
@@ -28,9 +29,9 @@ Before you embark on this automated job-seeking adventure, make sure you have:
 1. Clone this repo (or just copy-paste the code, we won't judge)
 2. Install the required packages:
    ```
-   pip install selenium webdriver_manager
+   pip install requirements.txt
    ```
-3. Update the constants at the top of the script with your info (unless your name is actually Fabrice Colozzi, in which case, hi Fabrice!)
+3. Update the constants at the top of the script with your personal info.
 4. Run the script:
    ```
    python coinbase_applicator.py
@@ -38,6 +39,9 @@ Before you embark on this automated job-seeking adventure, make sure you have:
 5. Choose your mode:
    - "One by one URL mode" for when you're feeling picky
    - "URL list mode" for when you're feeling ambitious
+6. The script will pull the first job URL from the list and start the application process.
+7. Review the application before submitting, DON'T CLICK ON THE SUBMIT BUTTON, instead click return in your terminal.
+8. The script will then add "#" in front of the applied job in url_list.txt and move on to the next job URL in the list, and so on.
 
 ## 🎭 Features
 
