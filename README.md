@@ -1,7 +1,7 @@
 # 🚀 Coinbase Job Applicator
 
 Welcome to the "I Really, Really Want to Work at Coinbase" script!  
-So, you've noticed that Coinbase is packed with job opportunities that scream your name, and you want to apply to all of them in record time? Say no more.
+So, you've noticed that Coinbase is packed with job opportunities that scream your name, and you want to apply to all of them in record time? Say no more.<br><br>
 Introducing this little Python thing that will turbocharge your job application process at Coinbase, because manually filling out forms is so 2010.
 
 ## 🤖 What This Script Does
@@ -24,25 +24,6 @@ Before you embark on this automated job-seeking adventure, make sure you have:
 - ChromeDriver (make sure it's the right version, or things get weird)
 - A burning desire to work at Coinbase (optional, but recommended)
 
-## 🚀 How to Use
-
-1. Clone this repo (or just copy-paste the code, we won't judge)
-2. Install the required packages:
-   ```
-   pip install requirements.txt
-   ```
-3. Update the constants at the top of the script with your personal info.
-4. Run the script:
-   ```
-   python coinbase_applicator.py
-   ```
-5. Choose your mode:
-   - "One by one URL mode" for when you're feeling picky
-   - "URL list mode" for when you're feeling ambitious
-6. The script will pull the first job URL from the list and start the application process.
-7. Review the application before submitting, DON'T CLICK ON THE SUBMIT BUTTON, instead click return in your terminal.
-8. The script will then add "#" in front of the applied job in url_list.txt and move on to the next job URL in the list, and so on.
-
 ## 🎭 Features
 
 - **Two Exciting Modes**: Choose between applying to jobs one at a time (for the cautious) or in bulk (for the brave).
@@ -50,6 +31,32 @@ Before you embark on this automated job-seeking adventure, make sure you have:
 - **Resume and Cover Letter Upload**: Automatically uploads your documents, saving you precious seconds you could spend dreaming about your future Coinbase job.
 - **Smart Dropdown Handling**: It selects options from dropdowns like a pro. It's basically a sommelier, but for job applications.
 - **Duplicate Job ID Check**: Prevents you from accidentally applying to the same job twice, because enthusiasm is good, but desperation is not.
+
+## 🚀 How to Use
+
+1. Clone this repo (or just copy-paste the code, we won't judge)
+2. Install the required packages:
+   ```
+   python -m venv .venv
+   pip install requirements.txt
+   ```
+3. Update the constants at the top of the script with your personal info.
+4. Add the job URLs you want to apply to in the `url_list.txt` file.
+   ```
+   https://www.coinbase.com/careers/positions/1234567
+   https://www.coinbase.com/careers/positions/7654321
+   etc...
+   ```
+5. Run the script:
+   ```
+   python coinbase_applicator.py
+   ```
+6. Choose your mode:
+   - "One by one URL mode". Doesn't use the URL list, just prompts you to enter the URL
+   - "URL list mode". Make sure you prefilled the `url_list.txt` file with the job URLs you want to apply to.
+7. The script will pull the first job URL from the list and start the application process.
+8. Review the application before submitting, DON'T CLICK ON THE SUBMIT BUTTON, instead click return in your terminal.
+9. The script will then add "#" in front of the applied job in url_list.txt and move on to the next job URL in the list, and so on.
 
 ## ⚠️ Disclaimer
 
