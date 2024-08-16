@@ -1,2 +1,2 @@
 # CoinBase-job-application
-Automate your CoinBase job applications ;)
+Automate your CoinBase job application ;)
